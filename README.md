@@ -1,5 +1,5 @@
 # Jing Added
-add go2_description from unitree git repo since it is not fully supported ubuntu 20.04 yet
+Add go2_description from unitree git repo since it is not fully supported ubuntu 20.04 yet
 
 # Introduction
 This repository is based on Unitree's repositories and aims to add the compatibility of the ROS packages with ROS Noetic. The list of the repositories considered is the following:
