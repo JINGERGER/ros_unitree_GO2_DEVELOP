@@ -1722,4 +1722,35 @@
       effort="100"
       velocity="3" />
   </joint>
+
+  <!-- 添加REALSENSE传感器 -->
+  <link name="realsense_d435">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="0.15"/>
+      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://realsense2_description/meshes/d435.dae" scale="1 1 1"/>
+      </geometry>
+      <material name="realsense_color">
+        <color rgba="0.2 0.6 0.8 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.1 0.05 0.03"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="realsense_joint" type="fixed">
+    <origin xyz="0 0 0.02" rpy="0 0 -1.5708"/> <!-- 镜头朝前，位置可调 -->
+    <parent link="link6"/>
+    <child link="realsense_d435"/>
+  </joint>
+
   </robot>
