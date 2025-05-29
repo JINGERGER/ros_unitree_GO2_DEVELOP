@@ -17,6 +17,7 @@ void RosShutDown(int sig){
 IOROS::IOROS():IOInterface(){
     std::cout << "The control interface for ROS Gazebo simulation" << std::endl;
     ros::param::get("/robot_name", _robot_name);
+    _robot_name = "go2";
     std::cout << "robot_name: " << _robot_name << std::endl;
 
     // start subscriber

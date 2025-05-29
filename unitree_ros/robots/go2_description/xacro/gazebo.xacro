@@ -253,5 +253,54 @@
         <kp  value="1000000.0"/>
         <kd  value="1.0"/>
     </gazebo>
+    <gazebo reference="realsense_link">
+        <sensor name="d435i_camera" type="camera">
+            <update_rate>30</update_rate>
+            <camera name="d435i">
+                <horizontal_fov>1.50098</horizontal_fov>
+                <image>
+                    <width>640</width>
+                    <height>480</height>
+                    <format>R8G8B8</format>
+                </image>
+                <clip>
+                    <near>0.1</near>
+                    <far>10.0</far>
+                </clip>
+                <noise>
+                    <type>gaussian</type>
+                    <mean>0.0</mean>
+                    <stddev>0.007</stddev>
+                </noise>
+            </camera>
+            <plugin name="depth_camera" filename="libgazebo_ros_camera.so">
+                <robotNamespace>/</robotNamespace>
+                <depthTopicName>depth/image_raw</depthTopicName>
+                <colorTopicName>color/image_raw</colorTopicName>
+                <ir1TopicName>infra1/image_raw</ir1TopicName>
+                <ir2TopicName>infra2/image_raw</ir2TopicName>
+                <depthInfoTopicName>depth/camera_info</depthInfoTopicName>
+                <colorInfoTopicName>color/camera_info</colorInfoTopicName>
+                <irInfoTopicName>infra/camera_info</irInfoTopicName>
+                <pointCloudTopicName>points</pointCloudTopicName>
+                <updateRate>30.0</updateRate>
+                <depthWidth>640</depthWidth>
+                <depthHeight>480</depthHeight>
+                <colorWidth>640</colorWidth>
+                <colorHeight>480</colorHeight>
+                <baseline>0.05</baseline>
+            </plugin>
+        </sensor>
+    </gazebo>
+    <gazebo reference="d435_Link">
+        <sensor name="d435i_imu" type="imu">
+          <plugin filename="libgazebo_ros_imu_sensor.so" name="d435i_imu_plugin">
+            <topicName>/camera/imu</topicName>
+            <bodyName>d435_Link</bodyName>
+            <updateRate>200.0</updateRate>
+            <frameName>d435_imu_link</frameName>  <!-- 使用唯一框架名 -->
+          </plugin>
+        </sensor>
+    </gazebo>
 
 </robot>

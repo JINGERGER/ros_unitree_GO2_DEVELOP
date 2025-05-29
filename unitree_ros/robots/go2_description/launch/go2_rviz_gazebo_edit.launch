@@ -2,10 +2,19 @@
 
     <arg name="user_debug" default="false"/>
     
-    <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find go2_description)/xacro/robot2.xacro'
+    <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find go2_description)/xacro/roamer.xacro'
     DEBUG:=$(arg user_debug)"/>
 
+    <!-- <node pkg="joint_state_publisher_gui" type="joint_state_publisher_gui" name="joint_state_publisher_gui">
+    <param name="use_gui" value="TRUE"/>
+    </node> -->
+
+    <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher_RVIZ">
+        <param name="publish_frequency" type="double" value="10.0"/>
+        <remap from="/joint_states" to="/merged_joint_states"/>
+    </node>
+
     <node pkg="rviz" type="rviz" name="rviz" respawn="false" output="screen"
-        args="-d $(find go2_description)/launch/check_joint.rviz"/>
+        args="-d $(find go2_description)/launch/roamer.rviz"/>
 
 </launch>
